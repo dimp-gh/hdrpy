@@ -22,7 +22,7 @@ if __name__ == '__main__':
             "License :: OSI Approved :: Apache Software License",
             "Operating System :: POSIX :: Linux",
             "Operating System :: MacOS",
-            "Operating System :: Windows",
+            "Operating System :: Microsoft :: Windows",
             "Programming Language :: Python",
             "Programming Language :: Python :: 2",
             "Programming Language :: Python :: 2.7",
