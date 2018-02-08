@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
         packages=["hdrpy"],
         install_requires=['numpy>=1.14.0'],
-        keywords='hdrpy hdr histogram high dynamic range',
+        keywords=['hdrpy', 'hdr', 'histogram', 'high dynamic range'],
         classifiers=[
             "Intended Audience :: Developers",
             "Intended Audience :: Information Technology",
