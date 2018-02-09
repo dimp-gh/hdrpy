@@ -8,6 +8,10 @@ verify_ssl = true
 [dev-packages]
 
 pytest = ">=3.4.0"
+codecov = ">=2.0.15"
+pytest-cov = ">=2.5.1"
+coverage = ">=4.5"
+
 
 [packages]
 
