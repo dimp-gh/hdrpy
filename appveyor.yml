@@ -28,7 +28,7 @@ install:
 build: off
 
 test_script:
-- "pytest"
+- "pipenv run pytest"
 
 # enable one day when pipenv works
 # after_test:
