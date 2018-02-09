@@ -1,0 +1,29 @@
+sudo: false
+language: python
+cache: pip  # use caching for pip's packages to speed up builds
+
+branches:
+  only:
+  - master
+
+os: linux
+
+python:
+- "2.7"
+- "3.6"
+
+env:
+- PIPENV_SHELL_COMPAT=true PIPENV_COLORBLIND=true PIPENV_NOSPIN=true
+
+install: - |
+- pip install --upgrade setuptools pip wheel pipenv
+- pipenv install --dev --system
+- pip install pytest
+
+script:
+- python -m pytest
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
