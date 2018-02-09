@@ -23,12 +23,12 @@ install:
 - "python --version"
 - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 - "pip install --upgrade pip wheel pipenv"
-- "pipenv install --dev"
+- "pipenv install --dev --system"
 
 build: off
 
 test_script:
-- "pipenv run pytest --cov=./"
+- "pytest --cov=./"
 
 after_test:
 - "codecov"
