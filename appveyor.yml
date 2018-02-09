@@ -6,9 +6,15 @@ environment:
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5.x"
       PYTHON_ARCH: "64"
+      PIPENV_SHELL_COMPAT: "true"
+      PIPENV_COLORBLIND: "true"
+      PIPENV_NOSPIN: "true"
     - PYTHON: "C:\\Python27"
       PYTHON_VERSION: "2.7.x"
       PYTHON_ARCH: "64"
+      PIPENV_SHELL_COMPAT: "true"
+      PIPENV_COLORBLIND: "true"
+      PIPENV_NOSPIN: "true"
 
 platform:
 - x64
