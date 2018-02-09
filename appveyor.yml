@@ -1,0 +1,27 @@
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python35"
+      PYTHON_VERSION: "3.5.x"
+      PYTHON_ARCH: "64"
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+
+platform:
+- x64
+
+install:
+- "%PYTHON%\\python.exe -m pip install --upgrade pip wheel pipenv"
+- "%PYTHON%\\python.exe -m pipenv install --dev --system"
+- set PATH=%PYTHON%\Scripts\;%PATH%
+
+build: off
+
+test_script:
+  - "%PYTHON%\\python.exe -m pytest --cov=./"
+
+after_test:
+  - "codecov"

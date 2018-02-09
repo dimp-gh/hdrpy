@@ -18,7 +18,6 @@ env:
 install:
 - pip install --upgrade setuptools pip wheel pipenv
 - pipenv install --dev --system
-- pip install pytest
 
 script:
 - python -m pytest --cov=./
