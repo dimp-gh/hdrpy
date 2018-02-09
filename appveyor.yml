@@ -24,11 +24,12 @@ install:
 - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 - "pip install --upgrade pip wheel pipenv"
 - "pipenv install --dev --system --verbose"
+- "set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
 build: off
 
 test_script:
-- "pytest --cov ."
+- "pytest --cov=hdrpy"
 
 after_test:
 - "codecov"
