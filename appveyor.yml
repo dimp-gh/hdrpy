@@ -2,32 +2,33 @@
 skip_branch_with_pr: true
 
 environment:
+  SHELL: "windows"
+
   matrix:
+
   - PYTHON: "C:\\Python35"
     PYTHON_VERSION: "3.5.x"
     PYTHON_ARCH: "64"
-    PIPENV_SHELL_COMPAT: "true"
-    PIPENV_COLORBLIND: "true"
-    PIPENV_NOSPIN: "true"
+
   - PYTHON: "C:\\Python27"
     PYTHON_VERSION: "2.7.x"
     PYTHON_ARCH: "64"
-    PIPENV_SHELL_COMPAT: "true"
-    PIPENV_COLORBLIND: "true"
-    PIPENV_NOSPIN: "true"
 
 platform:
 - x64
 
 install:
-- "%PYTHON%\\python.exe -m pip install --upgrade pip wheel pipenv"
-- "%PYTHON%\\python.exe -m pipenv install --dev --system"
-- set PATH=%PYTHON%\Scripts\;%PATH%
+- "set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+- "set PYTHONIOENCODING=utf-8"
+- "python --version"
+- "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+- "pip install --upgrade pip wheel pipenv"
+- "pipenv install --dev"
 
 build: off
 
 test_script:
-- "%PYTHON%\\python.exe -m pipenv run 'pytest --cov=./'"
+- "pipenv run pytest --cov=./"
 
 after_test:
 - "codecov"
