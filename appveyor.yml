@@ -3,18 +3,18 @@ skip_branch_with_pr: true
 
 environment:
   matrix:
-    - PYTHON: "C:\\Python35"
-      PYTHON_VERSION: "3.5.x"
-      PYTHON_ARCH: "64"
-      PIPENV_SHELL_COMPAT: "true"
-      PIPENV_COLORBLIND: "true"
-      PIPENV_NOSPIN: "true"
-    - PYTHON: "C:\\Python27"
-      PYTHON_VERSION: "2.7.x"
-      PYTHON_ARCH: "64"
-      PIPENV_SHELL_COMPAT: "true"
-      PIPENV_COLORBLIND: "true"
-      PIPENV_NOSPIN: "true"
+  - PYTHON: "C:\\Python35"
+    PYTHON_VERSION: "3.5.x"
+    PYTHON_ARCH: "64"
+    PIPENV_SHELL_COMPAT: "true"
+    PIPENV_COLORBLIND: "true"
+    PIPENV_NOSPIN: "true"
+  - PYTHON: "C:\\Python27"
+    PYTHON_VERSION: "2.7.x"
+    PYTHON_ARCH: "64"
+    PIPENV_SHELL_COMPAT: "true"
+    PIPENV_COLORBLIND: "true"
+    PIPENV_NOSPIN: "true"
 
 platform:
 - x64
@@ -27,7 +27,7 @@ install:
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe -m pytest --cov=./"
+- "%PYTHON%\\python.exe -m pipenv run 'pytest --cov=./'"
 
 after_test:
-  - "codecov"
+- "codecov"
