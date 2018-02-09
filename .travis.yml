@@ -15,7 +15,7 @@ python:
 env:
 - PIPENV_SHELL_COMPAT=true PIPENV_COLORBLIND=true PIPENV_NOSPIN=true
 
-install: - |
+install:
 - pip install --upgrade setuptools pip wheel pipenv
 - pipenv install --dev --system
 - pip install pytest
