@@ -6,7 +6,7 @@ if __name__ == '__main__':
         setup_requires=['pbr'], pbr=True,
 
         name="hdrpy",
-        version="0.1",
+        version="0.2",
         description="HDR histogram implementation based on numpy",
         author="Dmitri Pribysh",
         autor_email="dmand@yandex.ru",
