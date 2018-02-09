@@ -28,7 +28,7 @@ install:
 build: off
 
 test_script:
-- "pipenv run pytest"
+- "pipenv run pytest --cov ."
 
 # enable one day when pipenv works
 # after_test:
