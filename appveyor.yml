@@ -29,7 +29,7 @@ install:
 build: off
 
 test_script:
-- "pytest --cov=hdrpy"
+- "pytest --cov hdrpy --verbose"
 
 after_test:
 - "codecov"
