@@ -3,19 +3,21 @@ from setuptools import setup
 
 if __name__ == '__main__':
     setup(
-        setup_requires=['pbr'], pbr=True,
-
         name="hdrpy",
         version="0.2",
         description="HDR histogram implementation based on numpy",
         author="Dmitri Pribysh",
-        autor_email="dmand@yandex.ru",
+        author_email="dmand@yandex.ru",
         url="https://github.com/dmand/hdrpy",
         license='Apache 2.0',
         platform='any',
 
         packages=["hdrpy"],
-        install_requires=['numpy>=1.14.0'],
+
+        install_requires=[
+            'numpy>=1.14.0'
+        ],
+
         keywords=['hdrpy', 'hdr', 'histogram', 'high dynamic range'],
         classifiers=[
             "Intended Audience :: Developers",
