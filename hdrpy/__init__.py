@@ -548,3 +548,11 @@ class HdrHistogram(object):
                 other_count = other_hist.get_count_at_index(index)
                 if other_count > 0:
                     self.record_value(other_hist.get_value_from_index(index), other_count)
+
+    def get_value_counts(self):
+        """Returns a dict {recorded_value: count}
+        """
+        return {
+            item.value_iterated_to: item.count_at_value_iterated_to
+            for item in self.get_recorded_iterator()
+        }

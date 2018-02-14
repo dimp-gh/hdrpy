@@ -166,3 +166,11 @@ class TestHdrHistogram(TestCase):
         values = hist.get_percentile_to_value_dict(percentiles)
         expected = {0.0: 1, 50.0: 2929, 99.0: 9007, 100.0: 9999, 90.0: 6839, 95.0: 7767}
         self.assertEqual(values, expected)
+
+    def test_value_counts(self):
+        hist = HdrHistogram(1, 1000, 3)
+        counts = {10: 100, 20: 200, 30: 300}
+        for value, count in counts.items():
+            hist.record_value(value, count)
+        recovered_counts = hist.get_value_counts()
+        self.assertEqual(recovered_counts, counts)
