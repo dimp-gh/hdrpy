@@ -6,3 +6,4 @@ build/
 *.py[co]
 __pycache__/
 .hypothesis/
+.idea/
