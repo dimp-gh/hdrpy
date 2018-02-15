@@ -4,7 +4,7 @@ from setuptools import setup
 if __name__ == '__main__':
     setup(
         name="hdrpy",
-        version="0.3",
+        version="0.3.1",
         description="HDR histogram implementation based on numpy",
         author="Dmitri Pribysh",
         author_email="dmand@yandex.ru",
