@@ -6,7 +6,9 @@ branches:
   only:
   - master
 
-os: linux
+os:
+- linux
+- osx
 
 python:
 - "2.7"
