@@ -1,4 +1,4 @@
-|package-version| |python-compat| |travis-build| |appveyor-build| |license-apache|
+|pypi-version| |pypi-python| |travis-build| |appveyor-build| |pypi-license-apache| 
 
 
 hdrpy
@@ -20,9 +20,9 @@ involved.
 
 
 
-.. |python-compat| image:: https://img.shields.io/pypi/pyversions/hdrpy.svg
-.. |package-version| image:: https://img.shields.io/pypi/v/hdrpy.svg
+.. |pypi-python| image:: https://img.shields.io/pypi/pyversions/hdrpy.svg
+.. |pypi-version| image:: https://img.shields.io/pypi/v/hdrpy.svg
 .. |travis-build| image:: https://img.shields.io/travis/dmand/hdrpy.svg
-.. |appbeyor-build| image:: https://img.shields.io/appveyor/ci/dmand/hdrpy.svg
-.. |license-apache| image:: https://img.shields.io/pypi/l/hdrpy.svg
+.. |appveyor-build| image:: https://img.shields.io/appveyor/ci/dmand/hdrpy.svg
+.. |pypi-license-apache| image:: https://img.shields.io/appveyor/ci/dmand/hdrpy.svg
    :trim:
