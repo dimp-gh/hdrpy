@@ -19,10 +19,10 @@ matrix:
   include:
   - os: osx
     language: generic
-    env: PYTHON=3.4.4
+    env: PYTHON=2.7.14
   - os: osx
     language: generic
-    env: PYTHON=3.5.1
+    env: PYTHON=3.6.4
 
 before_install: |
   if [ "$TRAVIS_OS_NAME" == "osx" ]; then
