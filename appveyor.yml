@@ -5,7 +5,6 @@ environment:
   SHELL: "windows"
 
   matrix:
-
   - PYTHON: "C:\\Python35"
     PYTHON_VERSION: "3.5.x"
     PYTHON_ARCH: "64"
@@ -22,7 +21,7 @@ install:
 - "set PYTHONIOENCODING=utf-8"
 - "python --version"
 - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
-- "pip install --upgrade pip wheel pipenv"
+- "python -m pip install --upgrade pip wheel pipenv"
 - "pipenv install --dev"
 
 build: off
