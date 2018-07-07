@@ -205,11 +205,6 @@ class RecordedIterator(AbstractHdrIterator):
     def increment_iteration_level(self):
         self.visited_index = self.current_index
 
-    def has_next(self):
-        if self.total_count != self.histogram.total_count:
-            raise HdrConcurrentModificationException()
-        return self.current_index < self.histogram.counts_len - 1
-
 
 class HdrHistogram(object):
     """
