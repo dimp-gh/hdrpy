@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.3.2 2018-07-07
+### Fixed
+- Performance improvements for `RecordedIterator` (contributed by @undera)
+
 ## 0.3.1 2018-02-15
 ### Added
 - Added `get_value_counts()` method to histogram API
