@@ -135,6 +135,7 @@ class TestHdrHistogram(TestCase):
             histogram.record_value(value)
         self.assertEqual(histogram.get_mean_value(), 2000.5)
         self.assertEqual(histogram.get_stddev(), 1000.5)
+        self.assertEqual(histogram.get_stddev(2000.5), 1000.5)
 
     def test_get_value_at_percentile(self):
         histogram = HdrHistogram(1, 3600 * 1000 * 1000, 3)

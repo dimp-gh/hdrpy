@@ -490,10 +490,13 @@ class HdrHistogram(object):
             total += itr.count_at_this_value * self._hdr_median_equiv_value(item.value_iterated_to)
         return float(total) / self.total_count
 
-    def get_stddev(self):
+    def get_stddev(self, mean=None):
         if not self.total_count:
             return 0.0
-        mean = self.get_mean_value()
+
+        if mean is None:
+            mean = self.get_mean_value()
+
         geometric_dev_total = 0.0
         for item in self.get_recorded_iterator():
             dev = (self._hdr_median_equiv_value(item.value_iterated_to) * 1.0) - mean
