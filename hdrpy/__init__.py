@@ -157,6 +157,7 @@ class AbstractHdrIterator(object):
             return self.current_iteration_value
 
         raise StopIteration()
+
     next = __next__
 
     @abstractmethod
@@ -190,6 +191,7 @@ class RecordedIterator(AbstractHdrIterator):
     The iteration steps through all non-zero recorded value counts,
     and terminates when all recorded histogram values are exhausted.
     """
+
     def __init__(self, histogram):
         AbstractHdrIterator.__init__(self, histogram)
         self.visited_index = -1
@@ -204,6 +206,42 @@ class RecordedIterator(AbstractHdrIterator):
 
     def increment_iteration_level(self):
         self.visited_index = self.current_index
+
+
+class SinglePassIterator(RecordedIterator):
+    """
+    An iterator to do only one pass on data and calculate all we need inside it.
+    Should do one pass and return:
+    - stddev
+    - percentiles
+    - histogram
+    """
+
+    def __init__(self, histogram, levels):
+        super(SinglePassIterator, self).__init__(histogram)
+        self.percentiles = {}
+        self.stdev = 0
+        self.hist_values = {}
+
+    def reset(self, histogram=None):
+        super(SinglePassIterator, self).reset(histogram)
+        self.percentiles = {}
+        self.stdev = 0
+        self.hist_values = {}
+
+    def __next__(self):
+        item = super(SinglePassIterator, self).__next__()
+
+        # histogram
+        self.hist_values[item.value_iterated_to] = item.count_at_value_iterated_to
+
+        # stddev
+
+        # percentiles
+
+        return item
+
+    next = __next__
 
 
 class HdrHistogram(object):
@@ -267,6 +305,16 @@ class HdrHistogram(object):
         self.total_count = 0
         self.counts_len = (self.bucket_count + 1) * (self.sub_bucket_count // 2)
         self.counts = numpy.zeros(self.counts_len, dtype=numpy.int64)
+        self._ff_iter = None
+        self.percentile_levels = []
+
+    def _get_ff_iter(self):
+        if self._ff_iter is None:
+            self._ff_iter = SinglePassIterator(self, self.percentile_levels)
+            if self.total_count:
+                for _ in self._ff_iter:
+                    pass  # consume
+        return self._ff_iter
 
     @staticmethod
     def _clz(value):
@@ -320,6 +368,7 @@ class HdrHistogram(object):
         self.total_count += count
         self.min_value = min(self.min_value, value)
         self.max_value = max(self.max_value, value)
+        self._ff_iter = None
         return True
 
     def record_corrected_value(self, value, expected_interval, count=1):
@@ -491,6 +540,8 @@ class HdrHistogram(object):
         return float(total) / self.total_count
 
     def get_stddev(self, mean=None):
+        return self._get_ff_iter().stdev
+
         if not self.total_count:
             return 0.0
 
@@ -511,6 +562,7 @@ class HdrHistogram(object):
         self.total_count = 0
         self.min_value = sys.maxsize
         self.max_value = 0
+        self._ff_iter = None
 
     def __iter__(self):
         """Returns the recorded iterator if iter(self) is called
@@ -539,6 +591,7 @@ class HdrHistogram(object):
             self.total_count += other_hist.get_total_count()
             self.max_value = max(self.max_value, other_hist.get_max_value())
             self.min_value = min(self.get_min_value(), other_hist.get_min_value())
+            self._ff_iter = None
         else:
             # Arrays are not a direct match, so we can't just stream through and add them.
             # Instead, go through the array and add each non-zero value found at it's proper value:
@@ -550,7 +603,4 @@ class HdrHistogram(object):
     def get_value_counts(self):
         """Returns a dict {recorded_value: count}
         """
-        return {
-            item.value_iterated_to: item.count_at_value_iterated_to
-            for item in self.get_recorded_iterator()
-        }
+        return self._get_ff_iter().hist_values
